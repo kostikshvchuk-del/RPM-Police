@@ -289,9 +289,19 @@
                 issueDate = issueDateRaw.split('-').reverse().join('.');
             }
             
+            const departmentCodes = {
+                "Security Department": "SD",
+                "Voluntary People's Squads": "VPS",
+                "Department of Criminology": "DoC",
+                "Supply Department": "SOC",
+                "Senior Staff CPD": "SSC",
+                "Отсутствует": ""
+            };
+            const departmentCode = departmentCodes[department] || "";
+            
             let template = [
                 {"name":"Приветствие","actions":[["chat","Здравия желаю, чем могу помочь?"]],"icon":"minecraft:oak_sign","customModelData":0,"keybind":[]},
-                {"name":"Удостоверение","actions":[["cmd","/mee вытаскивает удостоверение из кармана, показав СУ, захлопнул документ и положил обратно в карман"],["cmd","/do Удостоверение содержит: Аделина Хилл-Блэквуд | Организация работы: CPD | Должность: Спецназ | Фотография сотрудника | Дата выдачи: 14.04.2026 | Отдел: SD | Сотрудник отдела | BDN | Печать CPD | RENJ"],["cmd","/do На бронежилете висит жетон на котором написано: Central Police Department"]],"icon":"minecraft:knowledge_book","customModelData":0,"keybind":[]},
+                {"name":"Удостоверение","actions":[["cmd","/mee вытаскивает удостоверение из кармана, показав СУ, захлопнул документ и положил обратно в карман"],["cmd",`/do Удостоверение содержит: ${rpName} | Организация работы: CPD | Должность: ${position} | Фотография сотрудника | Дата выдачи: ${issueDate} | Отдел: ${departmentCode} | ${positionInDepartment} | ${headSign} | Печать CPD | ${sheriffSign}`],["cmd",`/do На бронежилете висит жетон на котором написано: Central Police Department. (${rpName})`]],"icon":"minecraft:knowledge_book","customModelData":0,"keybind":[]},
                 {"name":"Миранда","actions":[["chat","вы имеете право хранить молчание, вы имеете право на один телефонный звонок, протяжённостью в 3 минуту. Также вы имеете право на адвоката, в случае его необходимости мы осуществим вызов. Вы понимаете свои права?"]],"icon":"minecraft:iron_bars","customModelData":0,"keybind":[]},
                 {"name":"Вызовы","actions":[["cmd","/calls"]],"icon":"minecraft:redstone_torch","customModelData":0,"keybind":[]},
                 {"name":"Включить мигалки","actions":[["cmd","/mee Нажав на зеленую кнопку рядом с рулем, вместе с громким звуком загорелись сине-красные мигалки."]],"icon":"minecraft:cherry_leaves","customModelData":0,"keybind":[]},
