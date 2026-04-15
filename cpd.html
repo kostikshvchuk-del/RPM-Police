@@ -277,8 +277,13 @@
             const position = document.getElementById('position').value;
             const department = document.getElementById('department').value;
             const sheriffSign = document.getElementById('sheriffSign').value || "RENJ";
-            const positionInDepartment = document.getElementById('positionInDepartment').value || "Patrol Officer";
-            const headSign = document.getElementById('headSign').value || "Chief";
+            const noDepartmentText = "Отсутствует";
+            const positionInDepartment = department === noDepartmentText
+                ? noDepartmentText
+                : document.getElementById('positionInDepartment').value || "Patrol Officer";
+            const headSign = department === noDepartmentText
+                ? noDepartmentText
+                : document.getElementById('headSign').value || "Chief";
             
             const issueDateRaw = document.getElementById('issueDate').value;
             let issueDate = issueDateRaw;
@@ -295,7 +300,7 @@
                 "Department of Criminology": "DoC",
                 "Supply Department": "SOC",
                 "Senior Staff CPD": "SSC",
-                "Отсутствует": ""
+                "Отсутствует": noDepartmentText
             };
             const departmentCode = departmentCodes[department] || "";
             
