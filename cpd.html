@@ -231,7 +231,7 @@
         </div>
         
         <div>
-            <button onclick="generateAndCopy()">📋 Сгенерировать и скопировать</button>
+            <button onclick="generateAndCopy(event)">📋 Сгенерировать и скопировать</button>
             <button class="success" onclick="downloadJSON()">💾 Скачать quickmenu_data.json</button>
             <button class="secondary" onclick="resetForm()">🔄 Сбросить</button>
         </div>
@@ -348,7 +348,7 @@
             return JSON.stringify(template);
         }
         
-        function generateAndCopy() {
+        function generateAndCopy(event) {
             const minifiedJSON = generateJSON();
             document.getElementById('jsonOutput').textContent = minifiedJSON;
             
