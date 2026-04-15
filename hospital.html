@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital QuickMenu Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #f1f8e9;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border: 1px solid #a5d6a7;
+        }
+        
+        h1 {
+            color: #2e7d32;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #4caf50;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            background: #ffffff;
+            border: 1px solid #a5d6a7;
+            border-radius: 8px;
+            color: #2e7d32;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #2e7d32;
+            background: #f1f8e9;
+        }
+        
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        button {
+            background: #4caf50;
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #388e3c;
+            transform: translateY(-2px);
+        }
+        
+        button.secondary {
+            background: #a5d6a7;
+            color: #2e7d32;
+        }
+        
+        button.secondary:hover {
+            background: #81c784;
+        }
+        
+        button.success {
+            background: #66bb6a;
+            color: white;
+        }
+        
+        button.success:hover {
+            background: #4caf50;
+        }
+        
+        .output-section {
+            margin-top: 30px;
+            background: #e8f5e8;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #a5d6a7;
+        }
+        
+        .output-section h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        pre {
+            background: #f1f8e9;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 11px;
+            color: #2e7d32;
+            font-family: 'Monaco', 'Courier New', monospace;
+            max-height: 500px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .info {
+            background: #ffffff;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #4caf50;
+            border-left: 3px solid #2e7d32;
+        }
+        
+        .note {
+            font-size: 12px;
+            color: #4caf50;
+            margin-top: 5px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏥 HOSPITAL QUICKMENU GENERATOR 🏥</h1>
+        <div class="subtitle">Заполните данные для генерации QuickMenu (медицинский вариант)</div>
+        
+        <div class="row">
+            <div class="form-group">
+                <label>📛 Имя и Фамилия</label>
+                <input type="text" id="rpName" placeholder="Алексей Иванов">
+            </div>
+            <div class="form-group">
+                <label>⭐ Должность</label>
+                <select id="position">
+                    <option value="Врач">Врач</option>
+                    <option value="Медсестра">Медсестра</option>
+                    <option value="Хирург">Хирург</option>
+                    <option value="Терапевт">Терапевт</option>
+                    <option value="Главный Врач">Главный Врач</option>
+                    <option value="Зам. Главного Врача">Зам. Главного Врача</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="form-group">
+                <label>🏢 Отдел</label>
+                <select id="department">
+                    <option value="Хирургия">Хирургия</option>
+                    <option value="Терапия">Терапия</option>
+                    <option value="Реанимация">Реанимация</option>
+                    <option value="Педиатрия">Педиатрия</option>
+                    <option value="Отсутствует">Отсутствует</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>📅 Дата выдачи</label>
+                <input type="date" id="issueDate">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="form-group">
+                <label>✍️ Подпись Глав. Врача</label>
+                <input type="text" id="headDoctorSign" placeholder="ГлавВрач">
+                <div class="note">Никнейм или подпись главного врача</div>
+            </div>
+            <div class="form-group">
+                <label>✍️ Подпись Зам. Глав. Врача</label>
+                <input type="text" id="deputyHeadSign" placeholder="ЗамГлавВрач">
+                <div class="note">Никнейм или подпись заместителя главного врача</div>
+            </div>
+        </div>
+        
+        <div>
+            <button onclick="generateAndCopy()">📋 Сгенерировать и скопировать</button>
+            <button class="success" onclick="downloadJSON()">💾 Скачать quickmenu_data.json</button>
+            <button class="secondary" onclick="resetForm()">🔄 Сбросить</button>
+        </div>
+        
+        <div class="output-section">
+            <h3>📄 Сгенерированный JSON:</h3>
+            <pre id="jsonOutput">// Заполните форму и нажмите кнопку</pre>
+            <div class="info">
+                💡 <strong>Инструкция:</strong> После генерации JSON автоматически скопируется в буфер обмена.<br>
+                Вставьте содержимое в файл <strong>quickmenu_data.json</strong> в папке с клиентом Minecraft.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const departmentSelect = document.getElementById('department');
+        const departmentFields = document.getElementById('departmentFields');
+        
+        function toggleDepartmentFields() {
+            // Для больницы отделы могут быть всегда видимы или скрыты, но оставим как есть
+        }
+        
+        departmentSelect.addEventListener('change', toggleDepartmentFields);
+        toggleDepartmentFields();
+        
+        function generateJSON() {
+            const rpName = document.getElementById('rpName').value || "Алексей Иванов";
+            const position = document.getElementById('position').value;
+            const department = document.getElementById('department').value;
+            const headDoctorSign = document.getElementById('headDoctorSign').value || "ГлавВрач";
+            const deputyHeadSign = document.getElementById('deputyHeadSign').value || "ЗамГлавВрач";
+            
+            const issueDateRaw = document.getElementById('issueDate').value;
+            let issueDate = issueDateRaw;
+            if (!issueDate) {
+                const today = new Date();
+                issueDate = today.toLocaleDateString('ru-RU').replace(/\//g, '.');
+            } else {
+                issueDate = issueDateRaw.split('-').reverse().join('.');
+            }
+            
+            let template = [{"name":"Удостоверение","actions":[["cmd","/me достал удостоверение из кармана своих штанов, открыл и показал гражданину некоторое время в открытом виде, после доказательства информации, захлопнул документ, перекинул его во вторую руку и положил обратно в карман."],["cmd","/do Информация в удостоверении: ИФ: Алексей Иванов | Фотография сотрудника 3x4 | Организация: Больница | Должность: Доктор | Дата выдачи: 20.12.2025 | Подпись Глав. Врача | Подпись Зам. Глав. Врача | Печать: Больница"]],"icon":"minecraft:knowledge_book","customModelData":0,"keybind":[]},{"name":"/veh spawn open army","actions":[["cmd","/veh spawn open army"]],"icon":"minecraft:chest_minecart","customModelData":0,"keybind":[90,44,0,0]},{"name":"Приветствие","actions":[["cmd","Здравствуйте, я доктор, чем могу помочь?"]],"icon":"minecraft:emerald_block","customModelData":0,"keybind":[]},{"name":"Бейджик","actions":[["cmd","/do На халате висит бейджик с текстом « Доктор Больницы Алексей Иванов »"],["cmd","/me достал из кармана халата визитку и передал её человеку напротив"],["cmd","/do Информация на визитке: ИФ: Алексей Иванов | Почта: ~ | Голубиная почта: ~ | Номер телефона: ~~~~~~~~ | НБС: ~~~~~~"]],"icon":"minecraft:gold_nugget","customModelData":6,"keybind":[]},{"name":"Осмотр","actions":[["cmd","/do Фотография сотрудника 3x4 | Организация: Больница | Должность: Доктор | Дата выдачи: 20.12.2025 | Подпись Глав. Врача | Подпись Зам. Глав. Врача | Печать: Больница"]],"icon":"minecraft:white_dye","customModelData":0,"keybind":[75,37,0,0]},{"name":"Лечение","actions":[["cmd","/me достал из кармана халата ручку и бланк, после чего принялся заполнять документ, который вскоре уже был готов к выдаче."],["cmd","/me вынув из кармана халата ручку начал заполнение документа, после чего протянул документ о лечении задержанному гражданину, положил на документ ручку."],["cmd","/do Документ протянут человеку в больнице, на нём лежит чёрная гелевая ручка"]],"icon":"minecraft:splash_potion","customModelData":0,"keybind":[]},{"name":"Скорая","actions":[["cmd","/me вызвал скорую помощь, после чего начал оказывать первую медицинскую помощь."],["cmd","/do Скорая помощь уже в пути"]],"icon":"minecraft:white_bed","customModelData":0,"keybind":[]},{"name":"Реанимация","actions":[["cmd","/me начал проводить реанимационные мероприятия, используя дефибриллятор."],["cmd","/me подключил пациента к аппарату ИВЛ, после чего начал мониторинг жизненно важных функций."],["cmd","/me ввел необходимые препараты для стабилизации состояния пациента."],["cmd","/me провел интубацию трахеи, после чего подключил пациента к аппарату ИВЛ."],["cmd","/me провел сердечно-легочную реанимацию, используя технику компрессий грудной клетки."],["cmd","/me провел дефибрилляцию сердца, используя дефибриллятор."],["cmd","/me провел катетеризацию центральной вены, после чего начал инфузионную терапию."],["cmd","/me провел мониторинг ЭКГ, после чего зафиксировал ритм сердца."],["cmd","/me провел забор крови для анализа, после чего отправил в лабораторию."],["cmd","/me провел рентгенографию грудной клетки, после чего описал снимок."]],"icon":"minecraft:red_dye","customModelData":0,"keybind":[]},{"name":"Ампутация","actions":[["cmd","/me надел перчатки, после чего подготовил инструменты для ампутации."],["cmd","/me ввел анестезию, после чего начал операцию."],["cmd","/me провел ампутацию конечности, после чего наложил швы."],["cmd","/do Ампутация проведена"]],"icon":"minecraft:white_dye","customModelData":0,"keybind":[]},{"name":"Выдача мед. карты","actions":[["cmd","/me достал медицинскую карту из ящика стола, после чего начал заполнять её."],["cmd","/todo Забрав мед. карту из рук врача : заполните все поля"]],"icon":"minecraft:written_book","customModelData":0,"keybind":[76,38,0,0]},{"name":"Выписка на 6 месяцев","actions":[["cmd","/me выписал справку о временной нетрудоспособности на 6 месяцев, после чего поставил печать."],["cmd","/me передал справку пациенту, после чего пожелал скорейшего выздоровления."]],"icon":"minecraft:map","customModelData":0,"keybind":[72,35,0,0]},{"name":"УДО","actions":[["cmd","/me вынул из дипломата подготовленные бланки на УДО, затем положил их на стол."],["cmd","/me вынув из кармана халата ручку начал заполнение документа, после чего протянул документ о соглашении на УДО задержанному гражданину, положил на документ ручку."],["cmd","/do Документ протянут человеку в больнице, на нём лежит чёрная гелевая ручка"]],"icon":"minecraft:apple","customModelData":0,"keybind":[]},{"name":"Перевязка","actions":[["cmd","/me надел перчатки, после чего начал перевязку раны."],["cmd","/me обработал рану антисептиком, после чего наложил повязку."],["cmd","/do Рана перевязана"]],"icon":"minecraft:red_candle","customModelData":0,"keybind":[]},{"name":"Снятие повязки","actions":[["cmd","/me надел перчатки, после чего начал снятие повязки."],["cmd","/todo Сняв повязку : осмотрите рану"]],"icon":"minecraft:red_candle","customModelData":0,"keybind":[]},{"name":"Взятие крови","actions":[["cmd","/me надел перчатки, после чего взял кровь на анализ."],["cmd","/do Кровь взята"]],"icon":"minecraft:redstone","customModelData":0,"keybind":[]},{"name":"Взятие мазка","actions":[["cmd","/me надел перчатки, после чего взял мазок."],["cmd","/do Мазок взят"]],"icon":"minecraft:string","customModelData":0,"keybind":[]},{"name":"Взятие мазка, кровь","actions":[["cmd","/me надел перчатки, после чего взял мазок и кровь."],["cmd","/do Мазок и кровь взяты"]],"icon":"minecraft:string","customModelData":0,"keybind":[]},{"name":"Взятие крови, мазок","actions":[["cmd","/me надел перчатки, после чего взял кровь и мазок."],["cmd","/do Кровь и мазок взяты"]],"icon":"minecraft:gunpowder","customModelData":0,"keybind":[]},{"name":"Смерть","actions":[["cmd","/me констатировал смерть пациента, после чего начал оформление документов."],["cmd","/do Смерть констатирована"]],"icon":"minecraft:bone","customModelData":0,"keybind":[]},{"name":"Экспертиза трупа, нож","actions":[["cmd","/me начал экспертизу трупа, после чего обнаружил ножевые ранения."],["cmd","/me зафиксировал все повреждения, после чего сделал заключение."]],"icon":"minecraft:bone","customModelData":0,"keybind":[]},{"name":"Экспертиза трупа, пуля","actions":[["cmd","/me начал экспертизу трупа, после чего обнаружил пулевые ранения."],["cmd","/me извлек пулю, после чего сделал заключение."]],"icon":"minecraft:bone","customModelData":0,"keybind":[]},{"name":"Экспертиза трупа, удушье","actions":[["cmd","/me начал экспертизу трупа, после чего обнаружил признаки удушья."],["cmd","/me зафиксировал все повреждения, после чего сделал заключение."]],"icon":"minecraft:bone","customModelData":0,"keybind":[]},{"name":"Экспертиза трупа, падение","actions":[["cmd","/me начал экспертизу трупа, после чего обнаружил признаки падения."],["cmd","/me зафиксировал все повреждения, после чего сделал заключение."]],"icon":"minecraft:bone","customModelData":0,"keybind":[]},{"name":"Укол","actions":[["cmd","/me надел перчатки, после чего сделал укол."],["cmd","/do Укол сделан"]],"icon":"minecraft:bone_meal","customModelData":0,"keybind":[]},{"name":"УДО на усл. досрочное","actions":[["cmd","/me вынул из дипломата подготовленные бланки на УДО, затем положил их на стол."],["cmd","/todo Заполните УДО на условное досрочное : заполните все поля"]],"icon":"minecraft:lime_wool","customModelData":0,"keybind":[]},{"name":"Экспертиза трупа, нож","actions":[["cmd","/me начал экспертизу трупа, после чего обнаружил ножевые ранения."],["cmd","/me зафиксировал все повреждения, после чего сделал заключение."]],"icon":"minecraft:pink_dye","customModelData":0,"keybind":[]},{"name":"Экспертиза трупа, пуля","actions":[["cmd","/me начал экспертизу трупа, после чего обнаружил пулевые ранения."],["cmd","/me извлек пулю, после чего сделал заключение."]],"icon":"minecraft:gray_dye","customModelData":0,"keybind":[]},{"name":"Выдача","actions":[["cmd","/me достал медицинскую карту из ящика стола, после чего начал заполнять её."],["cmd","/todo Забрав мед. карту из рук врача : заполните все поля."]],"icon":"minecraft:light_gray_dye","customModelData":0,"keybind":[]},{"name":"Выписка","actions":[["cmd","/me выписал справку о выписке, после чего поставил печать."],["cmd","/todo Забрав справку о выписке : держите, приятного вам дня."]],"icon":"minecraft:structure_void","customModelData":0,"keybind":[]},{"name":"Осмотр, лечение","actions":[["cmd","/me осмотрел пациента, после чего начал лечение."],["cmd","/me ввел необходимые препараты, после чего начал мониторинг."],["cmd","/me провел осмотр, после чего назначил лечение."],["cmd","/me провел забор анализов, после чего отправил в лабораторию."],["cmd","/me провел УЗИ, после чего описал результаты."],["cmd","/me провел ЭКГ, после чего зафиксировал ритм сердца."],["cmd","/me провел рентген, после чего описал снимок."],["cmd","/me провел МРТ, после чего описал результаты."],["cmd","/me провел КТ, после чего описал результаты."],["cmd","/me провел эндоскопию, после чего описал результаты."],["cmd","/me провел биопсию, после чего отправил на анализ."],["cmd","/me провел хирургическое вмешательство, после чего наложил швы."],["cmd","/me провел перевязку, после чего назначил повторный осмотр."],["cmd","/me провел инъекцию, после чего начал лечение."],["cmd","/me провел капельницу, после чего начал лечение."],["cmd","/me провел массаж, после чего назначил повторный сеанс."],["cmd","/me провел физиотерапию, после чего назначил повторный сеанс."],["cmd","/me провел консультацию, после чего дал рекомендации."],["cmd","/me провел осмотр, после чего выписал рецепт."],["cmd","/me провел осмотр, после чего выписал направление."]],"icon":"minecraft:rotten_flesh","customModelData":0,"keybind":[]},{"name":"Осмотр, наркоз","actions":[["cmd","/me ввел наркоз, после чего начал операцию."],["cmd","/do Наркоз введен"]],"icon":"minecraft:red_glazed_terracotta","customModelData":0,"keybind":[]},{"name":"Экспертиза оружия, наркоз","actions":[["cmd","/me начал экспертизу оружия, после чего обнаружил следы наркотиков."],["cmd","/me зафиксировал все следы, после чего сделал заключение."]],"icon":"minecraft:crossbow","customModelData":10,"keybind":[74,36,0,0]}];
+            
+            let jsonStr = JSON.stringify(template);
+            jsonStr = jsonStr.replace(/Алексей Иванов/g, rpName);
+            jsonStr = jsonStr.replace(/Доктор/g, position);
+            jsonStr = jsonStr.replace(/20\.12\.2025/g, issueDate);
+            jsonStr = jsonStr.replace(/Подпись Глав\. Врача/g, headDoctorSign);
+            jsonStr = jsonStr.replace(/Подпись Зам\. Глав\. Врача/g, deputyHeadSign);
+            jsonStr = jsonStr.replace(/доктор/g, position.toLowerCase());
+            jsonStr = jsonStr.replace(/Должность: Доктор/g, `Должность: ${position} | Отдел: ${department}`);
+            
+            return jsonStr;
+        }
+        
+        function generateAndCopy() {
+            const minifiedJSON = generateJSON();
+            document.getElementById('jsonOutput').textContent = minifiedJSON;
+            
+            navigator.clipboard.writeText(minifiedJSON).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Скопировано!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            }).catch(err => {
+                alert('Ошибка копирования: ' + err);
+            });
+        }
+        
+        function downloadJSON() {
+            const minifiedJSON = generateJSON();
+            const blob = new Blob([minifiedJSON], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'quickmenu_data.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            alert('✅ Файл quickmenu_data.json сохранен!');
+        }
+        
+        function resetForm() {
+            document.getElementById('rpName').value = '';
+            document.getElementById('position').value = 'Врач';
+            document.getElementById('department').value = 'Хирургия';
+            document.getElementById('headDoctorSign').value = '';
+            document.getElementById('deputyHeadSign').value = '';
+            document.getElementById('issueDate').valueAsDate = new Date();
+            document.getElementById('jsonOutput').textContent = '// Заполните форму и нажмите кнопку';
+        }
+        
+        document.getElementById('issueDate').valueAsDate = new Date();
+    </script>
+</body>
+</html>

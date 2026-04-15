@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meria QuickMenu Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a2f3a 0%, #0a2a2a 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #0d2c2c;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            border: 1px solid #2a6b6b;
+        }
+        
+        h1 {
+            color: #ffd966;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7faa9f;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            color: #ffd966;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            background: #1a3a3a;
+            border: 1px solid #2a6b6b;
+            border-radius: 8px;
+            color: #e6f7f0;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #ffd966;
+            background: #1f4545;
+        }
+        
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        button {
+            background: #ffd966;
+            color: #0a2a2a;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #ffc933;
+            transform: translateY(-2px);
+        }
+        
+        button.secondary {
+            background: #2a6b6b;
+            color: #ffd966;
+        }
+        
+        button.secondary:hover {
+            background: #1f5555;
+        }
+        
+        button.success {
+            background: #3a8c6b;
+            color: white;
+        }
+        
+        button.success:hover {
+            background: #2e6b52;
+        }
+        
+        .output-section {
+            margin-top: 30px;
+            background: #072020;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #2a6b6b;
+        }
+        
+        .output-section h3 {
+            color: #ffd966;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        pre {
+            background: #031515;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 11px;
+            color: #8fbbaa;
+            font-family: 'Monaco', 'Courier New', monospace;
+            max-height: 500px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .info {
+            background: #1a3a3a;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #bdd4cc;
+            border-left: 3px solid #ffd966;
+        }
+        
+        .note {
+            font-size: 12px;
+            color: #8fbbaa;
+            margin-top: 5px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏛️ MERIA QUICKMENU GENERATOR 🏛️</h1>
+        <div class="subtitle">Заполните данные для генерации QuickMenu (мужской вариант)</div>
+        
+        <div class="row">
+            <div class="form-group">
+                <label>📛 Имя и Фамилия</label>
+                <input type="text" id="rpName" placeholder="Криштиану Роналду">
+            </div>
+            <div class="form-group">
+                <label>⭐ Должность</label>
+                <select id="position">
+                    <option value="Водитель">Водитель</option>
+                    <option value="Телохранитель">Телохранитель</option>
+                    <option value="Секретарь">Секретарь</option>
+                    <option value="Председатель">Председатель</option>
+                    <option value="Адвокат">Адвокат</option>
+                    <option value="Судья">Судья</option>
+                    <option value="Вице-Губернатор">Вице-Губернатор</option>
+                    <option value="Губернатор">Губернатор</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="form-group">
+                <label>🏢 Отдел</label>
+                <select id="department">
+                    <option value="ОВР">ОВР</option>
+                    <option value="ISD">ISD</option>
+                    <option value="ФБК">ФБК</option>
+                    <option value="Отсутствует">Отсутствует</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>📅 Дата выдачи</label>
+                <input type="date" id="issueDate">
+            </div>
+        </div>
+        
+        <div id="departmentFields">
+            <div class="row">
+                <div class="form-group">
+                    <label>📋 Должность в отделе</label>
+                    <input type="text" id="positionInDepartment" placeholder="Сотрудник">
+                    <div class="note">Ваша должность внутри отдела</div>
+                </div>
+                <div class="form-group">
+                    <label>✍️ Подпись Главы Отдела</label>
+                    <input type="text" id="headSign" placeholder='bAd'>
+                    <div class="note">Подпись руководителя вашего отдела</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label>✍️ Подпись Губернатора</label>
+            <input type="text" id="governorSign" placeholder="bAd" value="bAd">
+            <div class="note">Никнейм или подпись губернатора</div>
+        </div>
+        
+        <div>
+            <button onclick="generateAndCopy()">📋 Сгенерировать и скопировать</button>
+            <button class="success" onclick="downloadJSON()">💾 Скачать quickmenu_data.json</button>
+            <button class="secondary" onclick="resetForm()">🔄 Сбросить</button>
+        </div>
+        
+        <div class="output-section">
+            <h3>📄 Сгенерированный JSON:</h3>
+            <pre id="jsonOutput">// Заполните форму и нажмите кнопку</pre>
+            <div class="info">
+                💡 <strong>Инструкция:</strong> После генерации JSON автоматически скопируется в буфер обмена.<br>
+                Вставьте содержимое в файл <strong>quickmenu_data.json</strong> в папке с клиентом Minecraft.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const departmentSelect = document.getElementById('department');
+        const departmentFields = document.getElementById('departmentFields');
+        
+        function toggleDepartmentFields() {
+            if (departmentSelect.value === 'Отсутствует') {
+                departmentFields.classList.add('hidden');
+            } else {
+                departmentFields.classList.remove('hidden');
+            }
+        }
+        
+        departmentSelect.addEventListener('change', toggleDepartmentFields);
+        toggleDepartmentFields();
+        
+        function generateJSON() {
+            const rpName = document.getElementById('rpName').value || "Криштиану Роналду";
+            const position = document.getElementById('position').value;
+            const department = document.getElementById('department').value;
+            const governorSign = document.getElementById('governorSign').value || "bAd";
+            const positionInDepartment = document.getElementById('positionInDepartment').value || "Сотрудник";
+            const headSign = document.getElementById('headSign').value || "bAd";
+            
+            const issueDateRaw = document.getElementById('issueDate').value;
+            let issueDate = issueDateRaw;
+            if (!issueDate) {
+                const today = new Date();
+                issueDate = today.toLocaleDateString('ru-RU').replace(/\//g, '.');
+            } else {
+                issueDate = issueDateRaw.split('-').reverse().join('.');
+            }
+            
+            let udText;
+            
+            if (department !== "Отсутствует") {
+                udText = `/do Информация в удостоверении: ИФ: ${rpName} | Организация: Правительство | Должность: ${position} | Фотография 3x4 | Дата Выдачи: ${issueDate} | Отдел: ${department} | Должность в отделе ${department}: ${positionInDepartment} | Подпись Главы Отдела ${department}: ${headSign} | Печать MERIA | Подпись Губернатора: ${governorSign}`;
+            } else {
+                udText = `/do Информация в удостоверении: ИФ: ${rpName} | Организация: Правительство | Должность: ${position} | Фотография 3x4 | Дата Выдачи: ${issueDate} | Отдел: ${department} | Печать MERIA | Подпись Губернатора: ${governorSign}`;
+            }
+            
+            let template = [
+                {"name":"vrc","actions":[["cmd","/vrc"]],"icon":"porting_lib:area_selector","customModelData":0,"keybind":[]},
+                {"name":"/sit","actions":[["cmd","/sit"]],"icon":"minecraft:polished_blackstone_stairs","customModelData":0,"keybind":[]},
+                {"name":"приветствие","actions":[[`cmd`,`Здравствуйте, меня зовут ${rpName}.`],["cmd","Чем могу помочь?"]],"icon":"minecraft:emerald","customModelData":0,"keybind":[]},
+                {"name":"бейджик","actions":[[`cmd`,`Здравствуйте, я ${rpName}.`],[`cmd`,`/do На пиджаке висит бейджик с текстом « ${position} Правительства ${rpName} »`],["cmd","Могу ли я Вам чем-нибудь помочь?"],],"icon":"minecraft:name_tag","customModelData":0,"keybind":[]},
+                {"name":"удостоверение","actions":[[`cmd`,`Здравствуйте, я ${position}, ${rpName}`],["cmd","/me достав удостоверение из внутреннего кармана пиджака, продемонстрировал его человеку напротив."],["cmd", udText],["cmd","/me убедившись что человек напротив изучил информацию убрал его обратно в нагрудный карман." ]],"icon":"minecraft:paper","customModelData":0,"keybind":[]},
+                {"name":"паспорт","actions":[[`cmd`,`Здравствуйте, я сотрудник отдела ${department} ${rpName}, покажите мне ваш паспорт на проверку`]],"icon":"minecraft:golden_helmet","customModelData":0,"keybind":[]},
+                {"name":"цельвизита","actions":[[`cmd`,`Здравствуйте, Я, ${rpName}, ${position} правительства. Занимаюсь охраной мэрии. Представьтесь пожалуйста.`],[`cmd`,`И скажите какова ваша цель визита в здание правительства?`]],"icon":"minecraft:shield","customModelData":0,"keybind":[]},
+                {"name":"документы","actions":[["cmd","Предъявите пожалуйста на проверку ваш паспорт."]],"icon":"minecraft:golden_helmet","customModelData":0,"keybind":[]},
+                {"name":"сила","actions":[["cmd","Извините, но я обязан применить силу."],["cmd","/me быстро подойдя к человеку начал его захват. Быстрыми и тактичными действиями скручивает человека."],["cmd","/do Человек на полу. Руки гражданина зафиксированны за спине"]],"icon":"minecraft:shield","customModelData":0,"keybind":[]},
+                {"name":"вернутьдоки","actions":[["cmd","/me возвращает документы человеку напротив."]],"icon":"minecraft:golden_helmet","customModelData":0,"keybind":[]},
+                {"name":"порядок","actions":[["cmd","Гражданин, прошу вас не нарушать порядок мэрии и покинуть здание."]],"icon":"minecraft:shield","customModelData":0,"keybind":[]},
+                {"name":"выдачапаспорта","actions":[[`cmd`,`Здравствуйте. Меня зовут ${rpName}. Сейчас, я вам выдам бланк. Заполните в полях имя и фамилию с заглавной буквы.`],["cmd","/n РП имя и фамилия должно быть на русском языке, без матов, без оскорблений, без нижнего подчёркивания, имя и Фамилия начинаются с заглавной буквы."],["cmd","/todo Забрав бланк из ящика и положив его на стол : заполните все поля"]],"icon":"minecraft:writable_book","customModelData":0,"keybind":[]},
+                {"name":"подтвердить","actions":[["cmd","/me убедившись что бланк заполнен верно ставит печать, вбивает данные в планшет, после чего печатает паспорт и ставит печать мэрии в паспорте."],["cmd","/todo Передав паспорт гражданину : ваш паспорт готов, держите, приятного вам прибывание в штате РПМ"],["cmd","/n Чтобы посмотреть паспорт введите команду /pass, чтобы показать паспорт кому-то нажмите курсором в чате {Показать Паспорт}, если он у вас просят"]],"icon":"minecraft:written_book","customModelData":0,"keybind":[]},
+                {"name":"отклонить","actions":[["cmd","/me убедившись что бланк заполнен неверно выкидывает бланк, тянется за новым бланком к ящику."],["cmd","/todo Забрав бланк из ящика и положив его на стол : заполните все поля снова, я не могу принять, тот бланк"],["cmd","/n РП имя и фамилия должно быть на русском языке, без матов, без оскорблений, без нижнего подчёркивания, имя и Фамилия начинаются с заглавной буквы."]],"icon":"minecraft:knowledge_book","customModelData":0,"keybind":[]},
+                {"name":"сменитьпаспорт","actions":[["cmd","/me взял документы из рук гражданина, положил в тумбочку старый паспорт, после чего взял бланк на смену паспорта с рук гражданина и изменил в базе данных на планшете, а затем распечатал и передал новый паспорт гражданину предварительно поставив печать."]],"icon":"minecraft:book","customModelData":0,"keybind":[]},
+                {"name":"билборд","actions":[["cmd","/me достал плакат из сумки и начал вешать на пустой биллборд."],["cmd","/billboard"],["cmd","/do Рекламный плакат висит ровно"]],"icon":"minecraft:painting","customModelData":0,"keybind":[]},
+                {"name":"ценыудо","actions":[["cmd","Цена условно досрочного освобождения зависит от уровня розыска с которым вы попали в КПЗ и количества вашей законопослушности."],["cmd","Первый уровень розыска -> 7.000$"],["cmd","Второй уровень розыска -> 14.000$"],["cmd","Третий уровень розыска -> 42.000$"],["cmd","Четвертый уровень розыска -> 84.000$"],["cmd","Пятый уровень розыска -> 105.000$"],["cmd","Каждую минуту сумма уменьшается на 350$"]],"icon":"minecraft:creeper_banner_pattern","customModelData":0,"keybind":[]},
+                {"name":"выдатьудо","actions":[["cmd","/me вынул из дипломата подготовленные бланки на УДО, затем положил их на стол."],["cmd","/me вынув из кармана пиджака ручку начал заполнение документа, после чего протянул документ о соглашении на УДО задержанному гражданину, положил на документ ручку."],["cmd","/do Документ протянут человеку в КПЗ, на нём лежит чёрная гелевая ручка"]],"icon":"minecraft:creeper_banner_pattern","customModelData":0,"keybind":[]},
+                {"name":"дело","actions":[["cmd","Пожалуйста, скажите по какой причине вы были задержаны и доставлены в КПЗ? На сколько лет вы были задержаны?"],["cmd","Так же предъявите ваш паспорт для подтверждение личности, а так же проверки вашей законопослушности."]],"icon":"minecraft:flower_banner_pattern","customModelData":0,"keybind":[]},
+                {"name":"адвокат","actions":[["cmd","/me взял с рук флешку, и вставил в телефон для просмотра доказательств."],["cmd","Чтож я просмотрю доказательства."],["cmd","/do Достав с телефона флешку адвокат протянул человеку напротив"]],"icon":"minecraft:globe_banner_pattern","customModelData":0,"keybind":[]},
+                {"name":"фракция","actions":[["cmd","/fraction open"]],"icon":"minecraft:command_block","customModelData":0,"keybind":[]},
+                {"name":"лежать","actions":[["cmd","/lay"]],"icon":"minecraft:lime_bed","customModelData":0,"keybind":[]},
+                {"name":"для даунов","actions":[["cmd","/lick"],["cmd","/kiss"],["cmd","/pounce"],["cmd","/hug"],["cmd","/slap"]],"icon":"minecraft:ender_eye","customModelData":0,"keybind":[]},
+                {"name":"ФБК","actions":[["cmd","Как сотрудник Надзорного Отдела Правительства, которым на данный момент является отдел ФБК - то бишь Федеральное Бюро Контроля - я имею право запросить ваши документы в целях их проверки и фиксации нарушений."],["cmd","Отказываясь предоставлять мне свои документы как сотруднику отделу ФБК, вы нарушаете Главу 5 пункт 4 Административно-Надзорного Кодекса, а именно \"Отказ от предоставления документов считается нарушением\"."],["cmd","За подобного рода нарушение, на ваше имя будет создан архив с фиксацией вашего нарушения."]],"icon":"minecraft:golden_helmet","customModelData":0,"keybind":[]},
+                {"name":"включить бодикамеру","actions":[["cmd","/me включил боди камеру"]],"icon":"minecraft:snowball","customModelData":0,"keybind":[]},
+                {"name":"выключить бодик","actions":[["cmd","/me выключил боди камеру"]],"icon":"minecraft:snowball","customModelData":0,"keybind":[]}
+            ];
+            
+            return JSON.stringify(template);
+        }
+        
+        function generateAndCopy() {
+            const minifiedJSON = generateJSON();
+            document.getElementById('jsonOutput').textContent = minifiedJSON;
+            
+            navigator.clipboard.writeText(minifiedJSON).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Скопировано!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            }).catch(err => {
+                alert('Ошибка копирования: ' + err);
+            });
+        }
+        
+        function downloadJSON() {
+            const minifiedJSON = generateJSON();
+            const blob = new Blob([minifiedJSON], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'quickmenu_data.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            alert('✅ Файл quickmenu_data.json сохранен!');
+        }
+        
+        function resetForm() {
+            document.getElementById('rpName').value = '';
+            document.getElementById('position').value = 'Водитель';
+            document.getElementById('department').value = 'ОВР';
+            document.getElementById('governorSign').value = 'bAd';
+            document.getElementById('positionInDepartment').value = '';
+            document.getElementById('headSign').value = '';
+            document.getElementById('issueDate').valueAsDate = new Date();
+            document.getElementById('jsonOutput').textContent = '// Заполните форму и нажмите кнопку';
+            toggleDepartmentFields();
+        }
+        
+        document.getElementById('issueDate').valueAsDate = new Date();
+    </script>
+</body>
+</html>
