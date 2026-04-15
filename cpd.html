@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPD QuickMenu Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2a 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #0f1419;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            border: 1px solid #2a4a6b;
+        }
+        
+        h1 {
+            color: #4a90e2;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7fa8c9;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            color: #4a90e2;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            background: #1a2332;
+            border: 1px solid #2a4a6b;
+            border-radius: 8px;
+            color: #e6f7f0;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #4a90e2;
+            background: #1f2a3d;
+        }
+        
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        button {
+            background: #4a90e2;
+            color: #0a0a0a;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #357abd;
+            transform: translateY(-2px);
+        }
+        
+        button.secondary {
+            background: #2a4a6b;
+            color: #4a90e2;
+        }
+        
+        button.secondary:hover {
+            background: #1f3a55;
+        }
+        
+        button.success {
+            background: #3a8c6b;
+            color: white;
+        }
+        
+        button.success:hover {
+            background: #2e6b52;
+        }
+        
+        .output-section {
+            margin-top: 30px;
+            background: #0a0f14;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #2a4a6b;
+        }
+        
+        .output-section h3 {
+            color: #4a90e2;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        pre {
+            background: #050a0f;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 11px;
+            color: #8fbbaa;
+            font-family: 'Monaco', 'Courier New', monospace;
+            max-height: 500px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .info {
+            background: #1a2332;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #bdd4cc;
+            border-left: 3px solid #4a90e2;
+        }
+        
+        .note {
+            font-size: 12px;
+            color: #8fbbaa;
+            margin-top: 5px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚔 CPD QUICKMENU GENERATOR 🚔</h1>
+        <div class="subtitle">Заполните данные для генерации QuickMenu (полицейский вариант)</div>
+        
+        <div class="row">
+            <div class="form-group">
+                <label>📛 Имя и Фамилия</label>
+                <input type="text" id="rpName" placeholder="Джон Смит">
+            </div>
+            <div class="form-group">
+                <label>⭐ Должность</label>
+                <select id="position">
+                    <option value="Рядовой">Рядовой</option>
+                    <option value="Сержант">Сержант</option>
+                    <option value="Лейтенант">Лейтенант</option>
+                    <option value="Ст.Лейтенант">Ст.Лейтенант</option>
+                    <option value="Спецназ">Спецназ</option>
+                    <option value="Нач.Спецназа">Нач.Спецназа</option>
+                    <option value="Полковник">Полковник</option>
+                    <option value="Шериф">Шериф</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="form-group">
+                <label>🏢 Отдел</label>
+                <select id="department">
+                    <option value="Security Department">Security Department (@SD)</option>
+                    <option value="Voluntary People's Squads">Voluntary People's Squads (@VPS)</option>
+                    <option value="Department of Criminology">Department of Criminology (@DoC)</option>
+                    <option value="Supply Department">Supply Department (@SOC)</option>
+                    <option value="Senior Staff CPD">Senior Staff CPD (@SSC)</option>
+                    <option value="Отсутствует">Отсутствует</option>
+                </select>
+                <div class="note" id="departmentDesc">Выберите отдел, чтобы увидеть описание.</div>
+            </div>
+            <div class="form-group">
+                <label>📅 Дата выдачи</label>
+                <input type="date" id="issueDate">
+            </div>
+        </div>
+        
+        <div id="departmentFields">
+            <div class="row">
+                <div class="form-group">
+                    <label>📋 Должность в отделе</label>
+                    <input type="text" id="positionInDepartment" placeholder="Рядовой отдела">
+                    <div class="note">Ваша должность внутри отдела</div>
+                </div>
+                <div class="form-group">
+                    <label>✍️ Подпись Главы Отдела</label>
+                    <input type="text" id="headSign" placeholder="slbw / KUCH">
+                    <div class="note">Подпись руководителя вашего отдела</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label>✍️ Подпись Шерифа</label>
+            <input type="text" id="sheriffSign" placeholder="RENJ" value="RENJ">
+            <div class="note">Никнейм или подпись шерифа</div>
+        </div>
+        
+        <div>
+            <button onclick="generateAndCopy()">📋 Сгенерировать и скопировать</button>
+            <button class="success" onclick="downloadJSON()">💾 Скачать quickmenu_data.json</button>
+            <button class="secondary" onclick="resetForm()">🔄 Сбросить</button>
+        </div>
+        
+        <div class="output-section">
+            <h3>📄 Сгенерированный JSON:</h3>
+            <pre id="jsonOutput">// Заполните форму и нажмите кнопку</pre>
+            <div class="info">
+                💡 <strong>Инструкция:</strong> После генерации JSON автоматически скопируется в буфер обмена.<br>
+                Вставьте содержимое в файл <strong>quickmenu_data.json</strong> в папке с клиентом Minecraft.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const departmentSelect = document.getElementById('department');
+        const departmentFields = document.getElementById('departmentFields');
+        
+        const departmentDescriptions = {
+            "Security Department": "[Security Department] или SD - отдел CPD, занимающийся охраной зданий государственных структур и высокопоставленных личностей штата. Сотрудники обязаны первыми прибывать для охраны и на наборы в госструктуры по вызову.",
+            "Voluntary People's Squads": "[Voluntary People's Squads] - обучение сержантов и рядовых (с лейтенанта). Задача: обучать младший состав уставу, строю и пониманию сферы CPD.",
+            "Department of Criminology": "[Department of Criminology] или DoC - отдел CPD, занимающийся экспертизами, снятием отпечатков с вещдоказательств и поиском улик на месте преступлений.",
+            "Supply Department": "Следит за складом, пополняет его и выдает маты составу (с лейтенанта).",
+            "Senior Staff CPD": "[Senior Staff CPD] - старший состав CPD (с начальником спецназа)."
+        };
+
+        function toggleDepartmentFields() {
+            const desc = departmentDescriptions[departmentSelect.value] || 'Выберите отдел, чтобы увидеть описание.';
+            document.getElementById('departmentDesc').textContent = desc;
+
+            if (departmentSelect.value === 'Отсутствует') {
+                departmentFields.classList.add('hidden');
+            } else {
+                departmentFields.classList.remove('hidden');
+            }
+        }
+        
+        departmentSelect.addEventListener('change', toggleDepartmentFields);
+        toggleDepartmentFields();
+        
+        function generateJSON() {
+            const rpName = document.getElementById('rpName').value || "Джон Смит";
+            const position = document.getElementById('position').value;
+            const department = document.getElementById('department').value;
+            const sheriffSign = document.getElementById('sheriffSign').value || "Palma";
+            const positionInDepartment = document.getElementById('positionInDepartment').value || "Patrol Officer";
+            const headSign = document.getElementById('headSign').value || "Chief";
+            
+            const issueDateRaw = document.getElementById('issueDate').value;
+            let issueDate = issueDateRaw;
+            if (!issueDate) {
+                const today = new Date();
+                issueDate = today.toLocaleDateString('ru-RU').replace(/\//g, '.');
+            } else {
+                issueDate = issueDateRaw.split('-').reverse().join('.');
+            }
+            
+            let udText;
+            
+            if (department !== "Отсутствует") {
+                udText = `/do Информация в удостоверении: ${rpName} | Фотография 3x4 | CPD | ${position} | ${issueDate} | Подпись шерифа: ${sheriffSign} | печать CPD | Отдел: ${department} | Должность в отделе: ${positionInDepartment} | Подпись главы отдела: ${headSign}`;
+            } else {
+                udText = `/do Информация в удостоверении: ${rpName} | Фотография 3x4 | CPD | ${position} | ${issueDate} | Подпись шерифа: ${sheriffSign} | печать CPD`;
+            }
+            
+            let template = [
+                {"name":"Паспорт","actions":[["cmd","/pass"]],"icon":"minecraft:book","customModelData":0,"keybind":[]},
+                {"name":"Удостоверение","actions":[["cmd","/me плавным движением руки извлек удостоверение из внутреннего кармана формы и раскрыл его перед гражданином."],["cmd", udText],["cmd", `/do На бронежилете висит жетон на котором написано: Central Police Department. (${rpName})`]],"icon":"minecraft:knowledge_book","customModelData":0,"keybind":[]},
+                {"name":"Визитка","actions":[["cmd","/me достал из кармана визитку и передал её человеку на против"],["cmd","/do Информация на визитке: ИФ: ${rpName} | Почта: ~ | Голубиная почта: ~ | Номер телефона: ~~~~~~~~ | НБС: ~~~~~~"]],"icon":"minecraft:paper","customModelData":0,"keybind":[]},
+                {"name":"Отчёт","actions":[["cmd","/checklist"]],"icon":"minecraft:writable_book","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"Вызовы","actions":[["cmd","/calls"]],"icon":"minecraft:redstone_torch","customModelData":0,"keybind":[]},
+                {"name":"Получить материалы","actions":[["cmd","/kit dtools"]],"icon":"minecraft:chorus_flower","customModelData":0,"keybind":[]},
+                {"name":"Розыски","actions":[["cmd","/police wanted"]],"icon":"minecraft:nether_brick_wall","customModelData":0,"keybind":[]},
+                {"name":"Отменить вызов/навигатор","actions":[["cmd","/gps cancel"]],"icon":"minecraft:end_rod","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"Выдать ОСБ","actions":[["cmd","/do В кармане на рубашке лежит шариковая ручка, а на столе лежит бланк документа на разрешение использования ОСБ."],["cmd","/me взяв паспорт из рук гражданина принялся заполнять документ, который вскоре уже был готов к выдаче."],["cmd","/todo Окончательно заполнив данные на листке, поставив свою подпись и протягивая документ гражданину : Разрешение готово, держите!"]],"icon":"minecraft:paper","customModelData":0,"keybind":[]},
+                {"name":"Выдать разрешение [Для мэрии]","actions":[["cmd","/me хватает с полки листочек с печатью CPD, осматривает его."],["cmd","/me кладёт листочек \"Разрешение на перевозку сотрудников правительства\" на стол, растёгивает пуговицу пиджака, вытаскивает ручку."],["cmd","/me ставит свою подпись на листочке, прячет ручку в карман пиджака, застёгивает пуговицу."]],"icon":"minecraft:paper","customModelData":0,"keybind":[]},
+                {"name":"Тушение огня [Огнетушитель]","actions":[["cmd","/do Парень, увидев пламя, быстро взял огнетушитель, осмотрел, сорвал пломбу на нем и начал тушить огонь"],["cmd","/do Постепенно пламя начало угасать от напора огнетушителя, через некоторое время оно окончательно угасло"]],"icon":"minecraft:red_candle","customModelData":0,"keybind":[]},
+                {"name":"Тушение пожара [Огнетушитель]","actions":[["cmd","/do Сотрудник полиции найдя гидрант, открыл клапан ключом и подсоединил пожарный рукав. Сильный напор воды хлынул из рукава, и сотрудник полиции направил струю на пламя, равномерно его туша, пока огонь полностью не был погашен"]],"icon":"minecraft:red_nether_brick_wall","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"Перес-ть запись и выдать розыск","actions":[["cmd","/me выключил и снял боди-камеру, после достал SD-карту памяти и подключил ее к КПК. Парень пересмотрел запись и после выдал розыск гражданину."],["cmd","/me перекинул данные SD-карты памяти на КПК. После чего засунул чистую SD-карту в боди-камеру и включил её."]],"icon":"minecraft:beacon","customModelData":0,"keybind":[]},
+                {"name":"Экспертиза [Огнестрел]","actions":[["cmd","/me надел перчатки на руки, достал из сумки оружие изъятое у преступника, приступил к экспертизе его, разобрав автомат, проверил работоспособность спускового механизма"],["cmd","/do Результат экспертизы показал что оружие вполне работоспособное, после полицейский спрятал оружие в ящик, и сделал документ о экспертизе"]],"icon":"minecraft:diamond_axe","customModelData":0,"keybind":[]},
+                {"name":"Экспертиза [Патроны]","actions":[["cmd","/me достал изъятую обойму из сумки, после приступил к экспертизе, открыл магазин и проверил на наличие патронов в нем, после достал патрон и проверил на подлинность"],["cmd","/do На патроне была маркировка настоящего, что доказывало подлинность патрона. Полицейский сложил нелегал и сделал документ о экспертизе"]],"icon":"minecraft:slime_ball","customModelData":0,"keybind":[]},
+                {"name":"Экспертиза [Холодка]","actions":[["cmd","/me принял улику в защитном контейнере, надел перчатки и разместил холодное оружие на рабочем столе экспертного кабинета, подготовив его к осмотру"],["cmd","/do При осмотре на предмете обнаружены зазубрины, сколы, следы эксплуатации и засохшие биологические следы, предположительно кровь"],["cmd","/me собрал биологические образцы, обработал рукоять дактилопорошком, перенёс выявленные отпечатки и выполнил основные замеры оружия"],["cmd","/me упаковал все изъятые образцы и оформил результаты экспертизы, предмет относится к категории холодного оружия, имеет следы эксплуатации и износа"]],"icon":"minecraft:wooden_sword","customModelData":0,"keybind":[]},
+                {"name":"Экспертиза [Наркота]","actions":[["cmd","/me надел защитные перчатки и халат, подготовил рабочее место, реактивы и лабораторное оборудование для проведения экспертизы"],["cmd","/me извлёк исследуемое вещество из защитного контейнера и внёс его в подготовленный химический реагент, соблюдая меры предосторожности"],["cmd","/do В ходе химической реакции раствор приобрёл синий цвет, характерный для наркотических веществ, сотрудник зафиксировал изменения, отобрал контрольные пробы и задокументировал полученные результаты"],["cmd","/do Проба дала положительную реакцию на наличие наркотических средств"],["cmd","/me упаковал оставшиеся образцы и оформил протокол экспертизы, в представленном веществе обнаружены признаки наркотических средств"]],"icon":"minecraft:pufferfish","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"Меню помощи","actions":[["cmd","/help"]],"icon":"minecraft:recovery_compass","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"Зачитать миранду","actions":[["cmd","Вы имеете право хранить молчание. Всё, что вы скажете, будет использовано против вас. Вы имеете право на один телефонный звонок на протяжении 1-й минуты. Также вы имеете право на адвоката, если у вас системный розыск вы не имеете право на адвоката. Мы обеспечим вызов адвоката, если потребуется. Понятны ли вам ваши права?"]],"icon":"minecraft:iron_bars","customModelData":0,"keybind":[]},
+                {"name":"Обыскать","actions":[["cmd","/me достал перчатки из заднего кармана, после чего натянул их на обе руки, после провел руками по верхним частям тела в области груди и рук, затем провел руками по туловищу и нижним частям тела в области пояса, карманов и ног."]],"icon":"minecraft:spider_eye","customModelData":0,"keybind":[]},
+                {"name":"Сфотографировать подозреваемого","actions":[["cmd","/do Поставив задержанного на однотонный фон, сотрудник снял КПК с подсумки на поясе, включив КПК открывает камеру и настраивает для снимка задержанного"],["cmd","/me направив камеру КПК на задержанного, фотографирует лицо гражданина с нескольких сторон. По завершению выключив КПК, зацепляет на исходное положение."]],"icon":"minecraft:glowstone","customModelData":0,"keybind":[]},
+                {"name":"Взять отпечатки пальцев","actions":[["cmd","/me поставил кейс на стол, достал дактилоскопическую карту, также небольшую баночку типографской краски и дактилоскопический каток, взял спиртовые салфетки, протёр подушечки пальцев преступника, намазал краску \"A4\" , начал раскатывать краску на бумаге."],["cmd","/me взял кисть преступника, раскатав краску на кончике пальцев, после начал подносить пальцы к дактилоскопической бумаге, повторив действия со второй рукой, взял карту и положил её в кейс."],["cmd","/do Отпечатки подозреваемого на бумаге"]],"icon":"minecraft:leather_boots","customModelData":0,"keybind":[]},
+                {"name":"Взять ДНК с подозреваемого","actions":[["cmd","/me достал из сумки черную ручку, маленькую пробирку и одноразовую кассету с реагентами, после этого используя пробирку, взял образец ДНК с внутренней стороны щеки задержанного."],["cmd","/me открыв крышку кассеты с реагентами поместил в нее образец слюны, после чего закрыл крышку кассеты и с помощью ручки поставил на кассете маркировку \"DET_DNA_Nnnnn\", после убрал всё оборудование обратно в кейс и закрыл его."]],"icon":"minecraft:ender_eye","customModelData":0,"keybind":[]},
+                {"name":"Посадить преступника","actions":[["cmd","/me достаёт из кармана бронежилета нужный ключ и вставляет его в замок. Открывая дверь, хватается за куртку преступника и толкает его в камеру. Закрывает дверь и положил ключ в карман."],["cmd","/do Преступник в КПЗ"]],"icon":"minecraft:cobweb","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"Написать ник в NonRP","actions":[["cmd","/n [username]"]],"icon":"minecraft:glass_bottle","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"Посадить преступника в машину","actions":[["cmd","/mee открыл дверь автомобиля, придерживая преступника за голову, посадил его в салон автомобиля, после закрыл дверь автомобиля и заблокировал двери."]],"icon":"minecraft:crimson_fungus","customModelData":0,"keybind":[]},
+                {"name":"Достать преступника из машины","actions":[["cmd","/mee открыл дверь автомобиля, придерживая преступника за руку медленно начал вытаскивать его из салона автомобиля, закрыл дверь автомобиля."]],"icon":"minecraft:warped_fungus","customModelData":0,"keybind":[]},
+                {"name":"Достать преступника из машины","actions":[["cmd","/me достал маленький молоток для разбития стекла и лёгким рывком ударил по стеклу. После разбития стекла вытащил преступника с машины через окно."]],"icon":"minecraft:brown_mushroom","customModelData":0,"keybind":[]},
+                {"name":"Стерлять по колесам","actions":[["cmd","/try держа оружие в руках, нацелился на колёса автомобиля подозреваемого, после чего открыл огонь по колёсам транспорта, пытаясь попадать по покрышкам"]],"icon":"minecraft:warped_fungus_on_a_stick","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"Выдать штраф [Г]","actions":[["cmd","/mee достаёт из кармана личный КПК, начинает заводить дело о штрафе на человека напротив"],["cmd","/mee взял паспорт у человека напротив и начал вписывать данные в КПК"],["cmd","/mee выписал штраф человеку напротив, выслал оповещение на электронную почту и убрал КПК в карман"]],"icon":"minecraft:barrier","customModelData":0,"keybind":[]},
+                {"name":"Выдать штраф [М]","actions":[["cmd","/do Сотрудник CPD дотсал личный КПК и бланк для штрафов из кармана бронижелета."],["cmd","/me включает КПК, записывает номер транспортного средства, после чего выслал оповещение на электронную почту о штрафе"],["cmd","/me делает фотографию транспорта, начинает заполнять бланк для штрафов, а затем вырвал лист, приклеил бланк к транспорту, выключил КПК и положил его в карман бронежилета."]],"icon":"minecraft:structure_void","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"Тревожная кнопка [БАР]","actions":[["cmd","/me тихим и аккуратным движением нажимает на тревожную кнопку на бронижелете, после чего раздаётся срочное сообщение по рации с местоположением."],["cmd","/r *Сработала тревожная кнопка у \u003cВаша должность\u003e \u003cВаше РП имя\u003e. GPS его бронижелета указывает на Бар \"Укус Змеи\"."]],"icon":"minecraft:green_concrete","customModelData":0,"keybind":[]},
+                {"name":"Тревожная кнопка [БЕДНЫЙ РАЙОН]","actions":[["cmd","/me тихим и аккуратным движением нажимает на тревожную кнопку на бронижелете, после чего раздаётся срочное сообщение по рации с местоположением."],["cmd","/r *Сработала тревожная кнопка у \u003cВаша должность\u003e \u003cВаше РП имя\u003e. GPS его бронижелета указывает на Бедный Район."]],"icon":"minecraft:black_concrete","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]},
+                {"name":"","actions":[],"icon":"minecraft:bedrock","customModelData":0,"keybind":[]}
+            ];
+            
+            return JSON.stringify(template);
+        }
+        
+        function generateAndCopy() {
+            const minifiedJSON = generateJSON();
+            document.getElementById('jsonOutput').textContent = minifiedJSON;
+            
+            navigator.clipboard.writeText(minifiedJSON).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✅ Скопировано!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            }).catch(err => {
+                alert('Ошибка копирования: ' + err);
+            });
+        }
+        
+        function downloadJSON() {
+            const minifiedJSON = generateJSON();
+            const blob = new Blob([minifiedJSON], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'quickmenu_data.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            alert('✅ Файл quickmenu_data.json сохранен!');
+        }
+        
+        function resetForm() {
+            document.getElementById('rpName').value = '';
+            document.getElementById('position').value = 'Рядовой';
+            document.getElementById('department').value = 'Patrol';
+            document.getElementById('sheriffSign').value = 'Palma';
+            document.getElementById('positionInDepartment').value = '';
+            document.getElementById('headSign').value = '';
+            document.getElementById('issueDate').valueAsDate = new Date();
+            document.getElementById('jsonOutput').textContent = '// Заполните форму и нажмите кнопку';
+            toggleDepartmentFields();
+        }
+        
+        document.getElementById('issueDate').valueAsDate = new Date();
+    </script>
+</body>
+</html>
