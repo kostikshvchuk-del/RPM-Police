@@ -289,20 +289,14 @@
                 issueDate = issueDateRaw.split('-').reverse().join('.');
             }
             
-            let udText;
-            
-            if (department !== "Отсутствует") {
-                udText = `/do Информация в удостоверении: ИФ: ${rpName} | Организация: Правительство | Должность: ${position} | Фотография 3x4 | Дата Выдачи: ${issueDate} | Отдел: ${department} | Должность в отделе ${department}: ${positionInDepartment} | Подпись Главы Отдела ${department}: ${headSign} | Печать MERIA | Подпись Губернатора: ${governorSign}`;
-            } else {
-                udText = `/do Информация в удостоверении: ИФ: ${rpName} | Организация: Правительство | Должность: ${position} | Фотография 3x4 | Дата Выдачи: ${issueDate} | Отдел: ${department} | Печать MERIA | Подпись Губернатора: ${governorSign}`;
-            }
+            const udText = `/do Информация в удостоверении: ИФ: ${rpName} | Организация: Правительство | Должность: ${position} | Дата выдачи: ${issueDate} | Печать Правительства`;
             
             let template = [
                 {"name":"vrc","actions":[["cmd","/vrc"]],"icon":"porting_lib:area_selector","customModelData":0,"keybind":[]},
                 {"name":"/sit","actions":[["cmd","/sit"]],"icon":"minecraft:polished_blackstone_stairs","customModelData":0,"keybind":[]},
                 {"name":"приветствие","actions":[[`cmd`,`Здравствуйте, меня зовут ${rpName}.`],["cmd","Чем могу помочь?"]],"icon":"minecraft:emerald","customModelData":0,"keybind":[]},
                 {"name":"бейджик","actions":[[`cmd`,`Здравствуйте, я ${rpName}.`],[`cmd`,`/do На пиджаке висит бейджик с текстом « ${position} Правительства ${rpName} »`],["cmd","Могу ли я Вам чем-нибудь помочь?"],],"icon":"minecraft:name_tag","customModelData":0,"keybind":[]},
-                {"name":"удостоверение","actions":[[`cmd`,`Здравствуйте, я ${position}, ${rpName}`],["cmd","/me достав удостоверение из внутреннего кармана пиджака, продемонстрировал его человеку напротив."],["cmd", udText],["cmd","/me убедившись что человек напротив изучил информацию убрал его обратно в нагрудный карман." ]],"icon":"minecraft:paper","customModelData":0,"keybind":[]},
+                {"name":"удостоверение","actions":[[`cmd`,`Здравствуйте, я ${position}, ${rpName}`],["cmd","/me достав удостоверение из внутреннего кармана пиджака, продемонстрировал его человеку напротив, убедившись что человек напротив изучил информацию убрал его обратно в нагрудный карман."],["cmd", udText]],"icon":"minecraft:paper","customModelData":0,"keybind":[]},
                 {"name":"паспорт","actions":[[`cmd`,`Здравствуйте, я сотрудник отдела ${department} ${rpName}, покажите мне ваш паспорт на проверку`]],"icon":"minecraft:golden_helmet","customModelData":0,"keybind":[]},
                 {"name":"цельвизита","actions":[[`cmd`,`Здравствуйте, Я, ${rpName}, ${position} правительства. Занимаюсь охраной мэрии. Представьтесь пожалуйста.`],[`cmd`,`И скажите какова ваша цель визита в здание правительства?`]],"icon":"minecraft:shield","customModelData":0,"keybind":[]},
                 {"name":"документы","actions":[["cmd","Предъявите пожалуйста на проверку ваш паспорт."]],"icon":"minecraft:golden_helmet","customModelData":0,"keybind":[]},
